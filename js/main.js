@@ -9,7 +9,7 @@ function search(){
 	// elem.value="";//想了想还是不要这样了
 	translation.style.display = 'block';
 	rexcard.style.display = 'none'
-
+	footer.style.display = 'none'
 	if(wd==""){
 		location.reload();//摁下回车刷新吧≖‿≖✧
 		scrollTo(0,0);
@@ -169,6 +169,7 @@ function wdJump(twd){// 联想记忆法，实用又高效(..•˘_˘•..)
 	wd = twd;
 	translation.style.display = "block";
 	rexcard.style.display = "none";
+	footer.style.display = 'none'
 	wdName.innerHTML = wd;
 	wdExplain.innerHTML = dic[wd];
 	scrollTo(0,0);
