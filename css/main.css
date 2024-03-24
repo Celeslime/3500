@@ -8,6 +8,9 @@
 	--text_color2: #888;
 	--text_color3: #bbb;
 }
+html{
+	overflow-y: scroll;
+}
 body {
 	background: var(--background_color);
 	margin: 0;
@@ -19,9 +22,6 @@ input {
 	box-sizing: border-box;
 	box-shadow: var(--card_shadow);
 	border-radius: var(--card_radius);
-}
-nav {
-	position: fixed;
 }
 button.jump {
 	display: block;
@@ -67,9 +67,6 @@ a:hover {
 }
 .container {
 	max-width: 600px;
-	top: 0;
-	left: 0;
-	right: 0;
 	margin: 0 auto;
 	width: 100%;
 	box-sizing: border-box;
@@ -77,6 +74,12 @@ a:hover {
 }
 #result {
 	margin-top: 54px;
+}
+#searchDiv{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 .card {
 	background: var(--card_background);
@@ -119,6 +122,7 @@ a:hover {
 }
 #resultUl {
 	padding-top: 8px;
+	margin-bottom: 30px;
 }
 #mail {
 	color: #fff;
@@ -135,8 +139,9 @@ span.jpExplain {
 }
 .jump.jpEpt {
 	border: none;
-	padding-left: 29%;
-	padding-top: 220px;
+	display: flex;
+	justify-content: center;
+	margin: 200px 0;
 }
 #rand{
 	position: fixed;
@@ -150,7 +155,6 @@ span.jpExplain {
 	border-radius: 100%;
 	box-shadow: var(--card_shadow);
 	background: var(--card_background);
-	/* 隐藏文本 */
 	color: white;
 }
 #rand button:hover{
@@ -166,14 +170,15 @@ span.jpExplain {
 	transform: translate(-50%, -50%);
 }
 .footer{
-	margin: 800px 0 40px 0;
-	display: flex;
-	align-items: center;
-	color: var(--text_color2);
+	margin-bottom: 30px;
+	color: var(--text_color3);
 }
-.footer a{
-	color: var(--text_color2)!important;
+.footer > *{
+	color: var(--text_color3)!important;
 	text-decoration: none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 }
 .footicon{
 	height: 16px;

@@ -169,7 +169,6 @@ function wdJump(twd){// 联想记忆法，实用又高效(..•˘_˘•..)
 	wd = twd;
 	translation.style.display = "block";
 	rexcard.style.display = "none";
-	document.title = '3500 高考单词查询 | ' + wd.toUpperCase();
 	wdName.innerHTML = wd;
 	wdExplain.innerHTML = dic[wd];
 	scrollTo(0,0);
@@ -204,4 +203,4 @@ function randWd(){
 	var jumpWd = Object.keys(dic)[jumpId];
 	wdJump(jumpWd);
 }
-console.log("\n\n\n\n\n        ■是深藏不漏的✿◡‿◡\n\n\n\n\n\n");
+console.log("\n\n\n\n\n        萌是深藏不漏的✿◡‿◡\n\n\n\n\n\n");
