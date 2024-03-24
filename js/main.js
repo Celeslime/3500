@@ -1,4 +1,4 @@
-// 奇妙的事情发生了 o‿≖✧
+// ■■的事情发生了 o‿≖✧
 var timer,wd="",guess="~";
 const speaker=new window.SpeechSynthesisUtterance();
 speaker.rate="0.75";
@@ -7,7 +7,9 @@ function search(){
 	var elem=document.querySelector('#searchDiv input[name="word"]');
 	wd=elem.value;
 	// elem.value="";//想了想还是不要这样了
-	translation.style.display="";
+	translation.style.display = 'block';
+	rexcard.style.display = 'none'
+
 	if(wd==""){
 		location.reload();//摁下回车刷新吧≖‿≖✧
 		scrollTo(0,0);
@@ -40,7 +42,7 @@ function research(){
 	list=[];n=0;
 	for(var key in dic){//包含关系搜索
 		if(key.search(wd)!=-1 && wd!=key){
-			if(n==0){
+			if(n == 0){
 				list.push(
 					'<button class="jump jpTitle" id="D'+(n++)+'">'+
 						"Ⅰ.包含关系"+
@@ -59,7 +61,7 @@ function research(){
 	}
 
 	var beginning="^",alphaN=0,n0=n;
-	if(wd.length>=4 && wd[0]!="^"){//前缀搜索
+	if(wd.length >= 4 && wd[0] != "^"){//前缀搜索
 		for(var i=0;i<4;i++){
 			if("aeiou".includes(wd[i])){
 				alphaN++;
@@ -93,11 +95,11 @@ function research(){
 
 	var endding="$",n1=n;alphaN=0;
 	if(wd.length>=4 && wd[wd.length-1]!="$"){//后缀搜索
-		for(var i=(wd.length-1);i>=(wd.length-4);i--){
+		for(var i = (wd.length-1); i >= (wd.length-4); i--){
 			if("aeiou".includes(wd[i])){
 				alphaN++;
 			}
-			endding=wd[i]+endding;
+			endding = wd[i]+endding;
 			if(alphaN==2){
 				break;
 			}
@@ -110,7 +112,7 @@ function research(){
 						'<button class="jump jpTitle" id="D'+(n++)+'">'+
 							"Ⅲ.相同后缀("+endding+")"+
 						"</button>"
-						);
+					);
 				}
 				list.push(
 					'<button class="jump" onclick="wdJump(\''+key+'\');" id="D'+(n++)+'">'+
@@ -119,7 +121,7 @@ function research(){
 							dic[key] +
 						'</span>'+
 					"</button>"
-					);
+				);
 			}
 		}
 	}
@@ -143,7 +145,7 @@ function frame(){
 		}
 		document.querySelector("#D"+(n-1)).id="Dm";
 		// scrollTo(0,20030821);
-		if(n>=17){//我十七岁那年认识了她(。・・)ノ
+		if(n>=17){//我■■岁■■■■■■(。・・)ノ
 			intCircle=1;
 			clearInterval(timer);
 			timer=setInterval(frame,intCircle);
@@ -164,15 +166,17 @@ function frame(){
 	}
 }
 function wdJump(twd){// 联想记忆法，实用又高效(..•˘_˘•..)
-	wd=twd;
-	translation.style.display="";
-	wdName.innerHTML=wd;
-	wdExplain.innerHTML=dic[wd];
+	wd = twd;
+	translation.style.display = "block";
+	rexcard.style.display = "none";
+	document.title = '3500 高考单词查询 | ' + wd.toUpperCase();
+	wdName.innerHTML = wd;
+	wdExplain.innerHTML = dic[wd];
 	scrollTo(0,0);
 	research();
 }
-function speak(){// 你想听单词，那我就大声读给你听(*•̀ㅂ•́)و
-	speaker.text=wdName.innerHTML;
+function speak(){// 你想听单词，那我就■■■■■■(*•̀ㅂ•́)و
+	speaker.text = wdName.innerHTML;
 	window.speechSynthesis.speak(speaker);
 }
 function onKeyPress(e) {//开车啦...不是...回车啦((٩(//̀Д/́/)۶))
@@ -188,11 +192,16 @@ function onKeyPress(e) {//开车啦...不是...回车啦((٩(//̀Д/́/)۶))
 	return true;
 }
 function rex() {//要不要了解一下正则表达式呐ฅ(๑*д*๑)ฅ
-	wdName.innerHTML="正则表达式";
-	wdExplain.innerHTML='正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。<br><br>下面将介绍简单的用法：<br>Ⅰ. “.”可以代替一个字母，也可以用“[a-z]”<br>Ⅱ. “.*”可以代替多个字母<br>Ⅲ. “$”用于判断后缀，如“tion$”<br>Ⅳ. “^”用于判断前缀，如“^ab”<br>Ⅴ. “?”用于可有可无的字符，如“colou?r”<br>Ⅵ. “|”可用于同时搜索<br><br><a onclick="example();">e.g. 以“acc”开头，以“tion”或“ing”结尾可以搜索“^acc.*(tion|ing)$”</a>';
+	translation.style.display = 'none';
+	rexcard.style.display = 'block'
 }
 function example(){
 	document.querySelector('#searchDiv input[name="word"]').value="^acc.*(tion|ing)$";
 	search();
 }
-console.log("\n\n\n\n\n        萌是深藏不漏的✿◡‿◡\n\n\n\n\n\n");
+function randWd(){
+	var jumpId = Math.floor(Math.random()*(Object.keys(dic).length));
+	var jumpWd = Object.keys(dic)[jumpId];
+	wdJump(jumpWd);
+}
+console.log("\n\n\n\n\n        ■是深藏不漏的✿◡‿◡\n\n\n\n\n\n");

@@ -21,30 +21,78 @@
 	二更：2021/1/30
 -->
 <head>
-	<title>高考单词查询</title>
+	<title>3500 高考单词查询</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width" initial-scale="1"/>
+	<meta name='description' content='高考3500个词汇的查询和联想 在输入框中输入单词并回车来查询 支持正则表达式方法详细使用方法 部分浏览器可以朗读单词'>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="icon" href="icon.png" sizes="32x32">
 </head>
 <body>
+	<h1 style="display: none;">3500 高考单词查询</h1>
 	<nav id="searchDiv" class="container">
 		<input type="text" name="word" placeholder="输入单词查询" onkeypress="return onKeyPress(event)"> 	
 	</nav>
 	<div id="result" class="container">
-		<div id="translation">
-			<button id="wdName" onclick="speak();">PRESEARCHING!</button>
-			<p id="wdExplain">
-				Provide 3500 college entrance examination vocabulary query and association.<br>
-				Enter the word in the input box and press Enter to query. You can use regular expressions. Words can be read by clicking the word in computer version.
-				<br><br>
-				提供高考3500词汇的查询和联想。<br>
-				在输入框中输入单词并回车来查询；支持正则表达式方法：<a id="rex" onclick="rex();">更多查询方法请点击这里</a>；部分浏览器单击单词可以朗读。
-				<br><br>
-				这个网页由“sth”制作，发布于2020年4月21日，<a href="mailto:1575989756@qq.com" id="mail">问题反馈邮箱: 1575989756@qq.com</a>
-			</p>
+		<div class="card" id="translation">
+			<button class="cardtitle" id="wdName" onclick="speak();">PRESEARCHING!</button>
+			<div id="wdExplain" class="cardcontent">
+				<ul>
+					<li>3500 college entrance exam vocabulary query and association.</li>
+					<li>Enter the word in the input box and press Enter to query. </li>
+					<li>You can use regular expressions. </li>
+					<li>Words can be read by clicking the word in computer version.</li>
+				</ul>
+				<ul>
+					<li>高考3500词汇的查询和联想</li>
+					<li>在输入框中输入单词并回车来查询</li>
+					<li>支持正则表达式方法<a id="rex" onclick="rex();"><span>详细使用方法</span></a></li>
+					<li>部分浏览器单击单词可以朗读</li>
+				</ul>
+			</div>
 		</div>
-		<div id="resultUl"></div>
+		<div class="card" id="rexcard" style="display: none;">
+			<button class="cardtitle">正则表达式</button>
+			<div class="cardcontent">
+				<p>
+					正则表达式是对字符串操作的一种逻辑公式；<br>
+					组成的“规则字符串”，可以过滤出定义好的特定字符及特定字符组合；<br>
+					下面将介绍简单的用法：
+				</p>
+				<ul>
+					<li><span>.</span>可以代替一个字母，也可以用<span>[a-z]</span></li>
+					<li><span>.*</span>可以代替多个字母</li>
+					<li><span>$</span>用于判断后缀，如<span>tion$</span></li>
+					<li><span>^</span>用于判断前缀，如<span>^ab</span></li>
+					<li><span>?</span>用于可有可无的字符，如<span>colou?r</span></li>
+					<li><span>|</span>可用于同时搜索
+				</ul>
+				<p>
+					<a onclick="example();">e.g. 以“acc”开头，以“tion”或“ing”结尾可以搜索<span>^acc.*(tion|ing)$</span></a>
+				</p>
+			</div>
+		</div>
+		<div id="resultUl" class="container"></div>
+		<spam class="footer">
+			<span class="footname">Sth @ 2020.04.21</span>
+			<svg class="footicon" fill="currentColor" viewBox="0 0 16 16">
+				<path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+			</svg>
+			<span class="footname"><a href="https://www.github.com/CeleSlime/3500">@CeleSlime</a></span>
+			<svg class="footicon" fill="currentColor" viewBox="0 0 16 16">
+				<path d="M6.048 3.323c.022.277-.13.523-.338.55-.21.026-.397-.176-.419-.453-.022-.277.13-.523.338-.55.21-.026.397.176.42.453Zm2.265-.24c-.603-.146-.894.256-.936.333-.027.048-.008.117.037.15.045.035.092.025.119-.003.361-.39.751-.172.829-.129l.011.007c.053.024.147.028.193-.098.023-.063.017-.11-.006-.142-.016-.023-.089-.08-.247-.118Z"/>
+				<path fill-rule="evenodd" d="M11.727 6.719c0-.022.01-.375.01-.557 0-3.07-1.45-6.156-5.015-6.156-3.564 0-5.014 3.086-5.014 6.156 0 .182.01.535.01.557l-.72 1.795a25.85 25.85 0 0 0-.534 1.508c-.68 2.187-.46 3.093-.292 3.113.36.044 1.401-1.647 1.401-1.647 0 .979.504 2.256 1.594 3.179-.408.126-.907.319-1.228.556-.29.213-.253.43-.201.518.228.386 3.92.246 4.985.126 1.065.12 4.756.26 4.984-.126.052-.088.088-.305-.2-.518-.322-.237-.822-.43-1.23-.557 1.09-.922 1.594-2.2 1.594-3.178 0 0 1.041 1.69 1.401 1.647.168-.02.388-.926-.292-3.113a25.78 25.78 0 0 0-.534-1.508l-.72-1.795ZM9.773 5.53c-.13-.286-1.431-.605-3.042-.605h-.017c-1.611 0-2.913.319-3.042.605a.096.096 0 0 0-.01.04c0 .022.008.04.018.056.11.159 1.554.943 3.034.943h.017c1.48 0 2.924-.784 3.033-.943a.095.095 0 0 0 .008-.096Zm-4.32-.989c-.483.022-.896-.529-.922-1.229-.026-.7.344-1.286.828-1.308.483-.022.896.529.922 1.23.027.7-.344 1.286-.827 1.307Zm2.538 0c.483.022.896-.529.922-1.229.026-.7-.344-1.286-.827-1.308-.484-.022-.896.529-.923 1.23-.026.7.344 1.285.828 1.307ZM2.928 8.99a10.674 10.674 0 0 0-.097 2.284c.146 2.45 1.6 3.99 3.846 4.012h.091c2.246-.023 3.7-1.562 3.846-4.011.054-.9 0-1.663-.097-2.285-1.312.26-2.669.41-3.786.396h-.017c-.297.003-.611-.005-.937-.023v2.148c-1.106.154-2.21-.068-2.21-.068V9.107a22.93 22.93 0 0 1-.639-.117Z"/>
+			</svg>
+			<span class="footname"><a href="mailto:1575989756@qq.com" id="mail">1575989756@qq.com</a></spam>
+		</div>
+	</div>
+	<div id="rand">
+		<button onclick="randWd();">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+				<path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+			</svg>
+		</button>
 	</div>
 	<!-- 字典大大 (´´ิ∀´)  -->
 	<script type="text/javascript" src="js/dic.js"></script>
